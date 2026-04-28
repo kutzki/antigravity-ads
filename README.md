@@ -67,6 +67,7 @@ Here is how the original claude-ads CLI commands translate into natural language
 | **LinkedIn Ads Deep Dive** | *"Review my LinkedIn B2B campaigns. Are my Lead Gen forms optimized?"* |
 | **YouTube Ads Deep Dive** | *"Analyze my YouTube Ads performance, specifically my Shorts placements."* |
 | **Microsoft/Apple Ads** | *"Audit my Apple Search Ads structure and CPPs."* |
+| **Amazon Ads** | *"Audit my Amazon PPC campaigns. Should I be running Sponsored Brands?"* |
 | **Creative Quality Audit** | *"Run a cross-platform creative audit on the attached ad images. Do they meet Meta's safe zones?"* |
 | **Landing Page Audit** | *"Review this landing page [url]. Is it optimized for cold ad traffic?"* |
 | **Budget & Bidding Review** | *"Review my budget allocation. Should I be using Target CPA or Maximize Conversions here?"* |
@@ -96,6 +97,7 @@ Comprehensive coverage across all platforms with weighted severity scoring:
 | TikTok Ads | 28 | Creative-first, Smart+, GMV Max, Search Ads, Events API |
 | Microsoft Ads | 24 | Google import safety, Copilot, CTV, LinkedIn targeting, video |
 | Apple Ads | 35+ | Campaign structure, CPPs, Maximize Conversions, AdAttributionKit |
+| Amazon Ads | 15+ | ACOS vs TACOS, KDP Backend Keywords, Attribution, Bridge Pages |
 | Cross-platform | 3 | Privacy infrastructure, creative diversity, refresh cadence |
 
 ### Quality Gates
@@ -145,5 +147,6 @@ MIT License - see [LICENSE](LICENSE) for details.
 ---
 
 *Forked and customized for Antigravity based on the original `claude-ads` project by Agrici Daniel.*
+
 
 

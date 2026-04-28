@@ -1,15 +1,15 @@
 ---
 name: claude-ads
-description: "Multi-platform paid advertising audit and optimization skill. Analyzes Google, Meta, YouTube, LinkedIn, TikTok, Microsoft, and Apple Ads. 250+ checks with scoring, parallel agents, industry templates, and AI creative generation."
-argument-hint: "audit | google | meta | youtube | linkedin | tiktok | microsoft | apple | creative | landing | budget | plan <type> | competitor | dna <url> | create | generate | photoshoot"
+description: "Multi-platform paid advertising audit and optimization skill. Analyzes Google, Meta, YouTube, LinkedIn, TikTok, Microsoft, Apple, and Amazon Ads. 250+ checks with scoring, parallel agents, industry templates, and AI creative generation."
+argument-hint: "audit | google | meta | youtube | linkedin | tiktok | microsoft | apple | amazon | creative | landing | budget | plan <type> | competitor | dna <url> | create | generate | photoshoot"
 license: MIT
 ---
 
 # Claude-Ads Orchestrator
 
 Comprehensive ad account analysis across all major platforms (Google, Meta,
-LinkedIn, TikTok, Microsoft). Orchestrates 17 specialized modules and
-10 agents (6 audit + 4 creative).
+LinkedIn, TikTok, Microsoft, Amazon). Orchestrates 18 specialized modules and
+11 agents (7 audit + 4 creative).
 
 ## Quick Reference
 | Intent | What it does |
@@ -26,6 +26,7 @@ LinkedIn, TikTok, Microsoft). Orchestrates 17 specialized modules and
 | "Budget allocation review" | Budget allocation and bidding strategy review |
 | "Create ad plan for <type>" | Strategic ad plan with industry templates |
 | "Audit Apple Ads" | Apple Ads deep analysis |
+| "Audit Amazon Ads" | Amazon Ads and KDP deep analysis |
 | "Competitor ad analysis" | Competitor ad intelligence analysis |
 | "PPC math / financial calculator" | PPC financial calculator (CPA, ROAS, break-even, budget forecasting) |
 | "A/B test design" | A/B test design (hypothesis, significance, duration, sample size) |
@@ -43,7 +44,7 @@ Ask these questions upfront (combine into one message):
 
 1. **Industry / Business type**: Which best describes you?
    SaaS · E-commerce · Local Service · B2B Enterprise · Info Products · Mobile App ·
-   Real Estate · Healthcare · Finance · Agency · Other
+   Real Estate · Healthcare · Finance · Agency · Author / Publisher · Other
 2. **Monthly ad spend**: Total budget and per-platform breakdown (approximate is fine)
 3. **Primary goal**: Sales / Revenue · Leads / Demos · App Installs · Calls · Brand
 4. **Active platforms**: Which platforms are you advertising on?
@@ -89,6 +90,7 @@ Detect business type from ad account signals:
 - **Healthcare**: HIPAA compliance flags, healthcare-specific ad policies
 - **Finance**: Special Ad Categories declared, financial products compliance
 - **Agency**: multiple client accounts, white-label reporting needs
+- **Author / Publisher**: KDP presence, ISBNs, Amazon sales rank, bridge pages
 
 ## Quality Gates
 Hard rules (never violate these):
@@ -99,6 +101,7 @@ Hard rules (never violate these):
 - Compliance: always check Special Ad Categories for housing/employment/credit/finance
 - Creative: never run silent video ads on TikTok (sound-on platform)
 - Attribution: default to 7-day click / 1-day view (Meta), data-driven (Google)
+- Amazon/KDP: Never run off-platform social traffic directly to an Amazon listing without a Bridge Page
 - Andromeda creative diversity: Flag Meta accounts with <10 genuinely distinct creatives
 - Privacy infrastructure gate: Always verify tracking stack (Consent Mode V2, CAPI, Events API, AdAttributionKit) before making optimization recommendations
 - PDF report quality gate: When generating reports, always use `scripts/generate_report.py` with `--check` first. Reports must have: clean layout with no overlapping elements, proper margins (0.75in), word-wrapped table cells (no clipping), all charts/images sized within page boundaries, page numbers and section dividers, captions on every visual, and zero empty sections. Run `--check` before `--output` and fix any warnings before delivering the PDF
@@ -139,6 +142,7 @@ Load these on-demand as needed; do NOT load all at startup.
 - `references/tiktok-creative-specs.md`: 9:16 only + safe zone overlay
 - `references/youtube-creative-specs.md`: Skippable/Bumper/Shorts/Thumbnail
 - `references/microsoft-creative-specs.md`: Multimedia Ads + RSA subset
+- `references/amazon-audit.md`: Amazon PPC and KDP optimization rules
 - `references/gaql-notes.md`: GAQL field compatibility, deduplication patterns, filter scope best practices
 - `references/voice-to-style.md`: Brand voice axis to visual attribute mapping for image generation
 - `references/copy-frameworks.md`: 6 ad copy frameworks (AIDA, PAS, BAB, 4P, FAB, Star-Story-Solution)
@@ -167,7 +171,7 @@ Aggregate = Sum(Platform_Score x Platform_Budget_Share)
 - **Low**: Best practice, minor impact (backlog)
 
 ## Sub-Skills (Modules)
-This skill orchestrates 17 specialized sub-skills which are located in the `C:\Users\kutzk\.gemini\antigravity\skills\claude-ads\modules\` directory. Use `view_file` to read the relevant module when needed:
+This skill orchestrates 18 specialized sub-skills which are located in the `C:\Users\kutzk\.gemini\antigravity\skills\claude-ads\modules\` directory. Use `view_file` to read the relevant module when needed:
 
 1. **ads-audit.md**: Full multi-platform audit with parallel delegation
 2. **ads-google.md**: Google Ads deep analysis (Search, PMax, YouTube)
@@ -186,11 +190,13 @@ This skill orchestrates 17 specialized sub-skills which are located in the `C:\U
 15. **ads-create.md**: Campaign concepts, copy decks, creative briefs
 16. **ads-generate.md**: AI image generation with pluggable providers
 17. **ads-photoshoot.md**: Product photography in 5 professional styles
+18. **ads-amazon.md**: Amazon Ads and KDP deep analysis
 
 ## Subagents (Prompts)
 For parallel analysis during full audits, refer to the files in `C:\Users\kutzk\.gemini\antigravity\skills\claude-ads\agents\`:
 - `audit-google.md`: Google Ads checks (G01-G74)
 - `audit-meta.md`: Meta Ads checks (M01-M46)
+- `audit-amazon.md`: Amazon Ads checks (ACOS, TACOS, KDP formatting)
 - `audit-creative.md`: Creative quality for LinkedIn, TikTok, Microsoft
 - `audit-tracking.md`: Conversion tracking health across all platforms
 - `audit-budget.md`: Budget, bidding, structure for LinkedIn, TikTok, Microsoft
