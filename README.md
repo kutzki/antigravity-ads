@@ -52,15 +52,30 @@ cd antigravity-ads
   <img src="assets/demo.gif" alt="Antigravity Ads Demo" width="100%">
 </p>
 
-## Quick Start
+## Natural Language Examples
 
-Just ask Antigravity! Instead of rigid `/slash` commands, this skill uses natural language intent routing:
+Because this skill is deeply integrated into Antigravity, you no longer need to memorize specific slash commands. Simply tell Antigravity what you want to achieve. 
 
-- *"Run a full ads audit on my SaaS company, I spend $5k/mo on Google and Meta."*
-- *"Audit my Meta Ads creative diversity."*
-- *"Create an ad plan for my e-commerce business."*
-- *"Extract the brand DNA from [url] and generate a campaign concept."*
-- *"Review my Google Ads budget allocation."*
+Here is how the original claude-ads CLI commands translate into natural language prompts:
+
+| Capability | Example Prompt |
+|------------|----------------|
+| **Full Cross-Platform Audit** | *"Run a full multi-platform ads audit. I'm an e-commerce brand spending /mo. Here is my data..."* |
+| **Google Ads Deep Dive** | *"Audit my Google Ads account. Review my PMax setup and Search broad match keywords."* |
+| **Meta Ads Deep Dive** | *"Run a Meta Ads analysis. Check if my Advantage+ shopping campaigns are overlapping."* |
+| **TikTok Ads Deep Dive** | *"Audit my TikTok Ads. Am I hitting the creative diversity and budget sufficiency minimums?"* |
+| **LinkedIn Ads Deep Dive** | *"Review my LinkedIn B2B campaigns. Are my Lead Gen forms optimized?"* |
+| **YouTube Ads Deep Dive** | *"Analyze my YouTube Ads performance, specifically my Shorts placements."* |
+| **Microsoft/Apple Ads** | *"Audit my Apple Search Ads structure and CPPs."* |
+| **Creative Quality Audit** | *"Run a cross-platform creative audit on the attached ad images. Do they meet Meta's safe zones?"* |
+| **Landing Page Audit** | *"Review this landing page [url]. Is it optimized for cold ad traffic?"* |
+| **Budget & Bidding Review** | *"Review my budget allocation. Should I be using Target CPA or Maximize Conversions here?"* |
+| **Campaign Planning** | *"Create a strategic ad plan for a B2B Enterprise software company."* |
+| **Competitor Intelligence** | *"Run a competitor ad analysis against [competitor URL]."* |
+| **PPC Math & Calculators** | *"Calculate my break-even ROAS and target CPA based on a  LTV and 40% margin."* |
+| **A/B Test Design** | *"Design an A/B test for my new ad copy. How long does it need to run for statistical significance?"* |
+| **PDF Report Generation** | *"Generate a professional PDF audit report of everything we just discussed for my client."* |
+| **Creative Generation** | *"Extract the brand DNA from [url], create 3 campaign concepts, and generate the ad images."* |
 
 The orchestrator will automatically collect missing context, select the appropriate sub-module, and execute the task!
 
@@ -130,4 +145,5 @@ MIT License - see [LICENSE](LICENSE) for details.
 ---
 
 *Forked and customized for Antigravity based on the original `claude-ads` project by Agrici Daniel.*
+
 
